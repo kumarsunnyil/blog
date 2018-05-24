@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('posts/{something}', 'PostController@getPost');
+
+// implementation of the route middleware
+
+/*
+Route::get('posts/{something}', ['middleware' => 'down.for.maintenance', function () {
+    return "Only big boys/girls can see this.";
+}]);
+*/
+
+
+Route::get('posts/{something}', function () {
+    //
+})->middleware(['down.for.maintenance']);
+
