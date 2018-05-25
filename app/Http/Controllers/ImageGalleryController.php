@@ -17,6 +17,7 @@ class ImageGalleryController extends Controller
     {
 
         if (Auth::check()) {
+
             $images = ImageGallery::get();
             return view('image-gallery', compact('images'));
         } else {
@@ -63,5 +64,13 @@ class ImageGalleryController extends Controller
         ImageGallery::find($id)->delete();
         return back()
             ->with('success', 'Image removed successfully.');
+    }
+
+    public function  showGallery(){
+
+
+            $images = ImageGallery::get();
+            return view('gallerypage', compact('images'));
+
     }
 }
