@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ImageGallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ImageGalleryController extends Controller
 {
@@ -14,8 +15,15 @@ class ImageGalleryController extends Controller
      */
     public function index()
     {
-        $images = ImageGallery::get();
-        return view('image-gallery',compact('images'));
+
+        if (Auth::check()) {
+            $images = ImageGallery::get();
+            return view('image-gallery', compact('images'));
+        } else {
+            //redirect()->guest(route('login'));
+            //echo "User is Not logged in";
+            return redirect('/login');
+        }
     }
 
 
@@ -32,7 +40,7 @@ class ImageGalleryController extends Controller
         ]);
 
 
-        $input['image'] = time().'.'.$request->image->getClientOriginalExtension();
+        $input['image'] = time() . '.' . $request->image->getClientOriginalExtension();
         $request->image->move(public_path('images'), $input['image']);
 
 
@@ -41,7 +49,7 @@ class ImageGalleryController extends Controller
 
 
         return back()
-            ->with('success','Image Uploaded successfully.');
+            ->with('success', 'Image Uploaded successfully.');
     }
 
 
@@ -54,6 +62,6 @@ class ImageGalleryController extends Controller
     {
         ImageGallery::find($id)->delete();
         return back()
-            ->with('success','Image removed successfully.');
+            ->with('success', 'Image removed successfully.');
     }
 }

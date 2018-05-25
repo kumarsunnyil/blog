@@ -42,3 +42,8 @@ Route::resource('photos', 'PhotoController');
 Route::get('image-gallery', 'ImageGalleryController@index');
 Route::post('image-gallery', 'ImageGalleryController@upload');
 Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
+
+// Contact us
+
+Route::get('contact-us', 'ContactController@contactUS');
+Route::post('contact-us', ['as'=>'contactus.store','uses'=>'ContactController@contactUSPost']);
