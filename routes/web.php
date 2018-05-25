@@ -19,7 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('posts/{something}', 'PostController@getPost');
+//Route::get('posts/{something}', 'PostController@getPost');
+Route::get('posts/', 'PostController@getPost');
 
 // implementation of the route middleware
 
@@ -29,8 +30,10 @@ Route::get('posts/{something}', ['middleware' => 'down.for.maintenance', functio
 }]);
 */
 
-
+/*
 Route::get('posts/{something}', function () {
     //
 })->middleware(['down.for.maintenance']);
+*/
 
+Route::resource('photos', 'PhotoController');
