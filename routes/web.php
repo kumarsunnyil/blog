@@ -37,3 +37,8 @@ Route::get('posts/{something}', function () {
 */
 
 Route::resource('photos', 'PhotoController');
+
+// routes for the image gallery
+Route::get('image-gallery', 'ImageGalleryController@index');
+Route::post('image-gallery', 'ImageGalleryController@upload');
+Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
