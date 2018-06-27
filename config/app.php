@@ -162,6 +162,8 @@ return [
 
         // CollectiveHTML for contactus page
         Collective\Html\HtmlServiceProvider::class,
+        // Google Mapper
+        Cornford\Googlmapper\MapperServiceProvider::class,
     ],
 
     /*
@@ -214,6 +216,8 @@ return [
         // CollectiveHTML
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        // Google Mapper
+        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
     ],
 
 ];

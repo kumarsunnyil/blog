@@ -19,6 +19,7 @@ class ImageGalleryController extends Controller
         if (Auth::check()) {
 
             $images = ImageGallery::get();
+
             return view('image-gallery', compact('images'));
         } else {
             //redirect()->guest(route('login'));
@@ -41,7 +42,7 @@ class ImageGalleryController extends Controller
         ]);
 
 
-        $input['image'] = time() . '.' . $request->image->getClientOriginalExtension();
+        $input['image'] = time().'.'.$request->image->getClientOriginalExtension();
         $request->image->move(public_path('images'), $input['image']);
 
 
@@ -62,15 +63,23 @@ class ImageGalleryController extends Controller
     public function destroy($id)
     {
         ImageGallery::find($id)->delete();
+
         return back()
             ->with('success', 'Image removed successfully.');
     }
 
-    public function  showGallery(){
+    public function showGallery()
+    {
 
 
-            $images = ImageGallery::get();
-            return view('gallerypage', compact('images'));
+        $images = ImageGallery::get();
 
+        return view('gallerypage', compact('images'));
+
+    }
+
+    public function getGalleryPage()
+    {
+        return view('gallery2');
     }
 }

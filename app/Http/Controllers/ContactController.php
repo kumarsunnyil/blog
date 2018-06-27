@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+//use Cornford\Googlmapper\Mapper;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\ContactUS;
 use Illuminate\Support\Facades\Mail;
-
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 class ContactController extends Controller
 {
@@ -17,6 +18,9 @@ class ContactController extends Controller
      */
     public function contactUS()
     {
+        Mapper::map(53.381128999999990000, -1.470085000000040000);
+
+        //return view('map')
         return view('contactus');
     }
 
